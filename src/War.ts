@@ -22,23 +22,23 @@ export class War {
     vikingAttack(){
         let randomSaxonNumber = Math.floor(Math.random() * this.saxonArmy.length);
         let randomVikingNumber = Math.floor(Math.random() * this.vikingArmy.length);
-        this.saxonArmy[randomSaxonNumber].receiveDamage(this.vikingArmy[randomVikingNumber].strength);
+        let resultVikingAttack = this.saxonArmy[randomSaxonNumber].receiveDamage(this.vikingArmy[randomVikingNumber].strength);
         
         if (this.saxonArmy[randomSaxonNumber].health <= 0) {
             this.saxonArmy = this.saxonArmy.filter(saxon => saxon.health > 0);
         }
-        return "A Saxon has died in combat";
+        return resultVikingAttack;
     }
 
     saxonAttack(){
         let randomSaxonNumber = Math.floor(Math.random() * this.saxonArmy.length);
         let randomVikingNumber = Math.floor(Math.random() * this.vikingArmy.length);
-        let result = this.vikingArmy[randomVikingNumber].receiveDamage(this.saxonArmy[randomSaxonNumber].strength);
+        let resultSaxonAttack = this.vikingArmy[randomVikingNumber].receiveDamage(this.saxonArmy[randomSaxonNumber].strength);
         
         if (this.vikingArmy[randomVikingNumber].health <= 0) {
             this.vikingArmy = this.vikingArmy.filter(viking => viking.health > 0);
         }
-        return result;
+        return resultSaxonAttack;
     }
 
     showStatus(){
@@ -50,5 +50,5 @@ export class War {
                 return "Vikings and Saxons are still in the thick of battle."
             }
         }
-        
+
 }
